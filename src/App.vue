@@ -1,5 +1,8 @@
 <script setup>
 import { reactive } from 'vue';
+import Cabecalho from './components/Cabecalho.vue'
+import Formulario from './components/Formulario.vue'
+import Resultado from './components/Resultado.vue'
 
   const estado = reactive({
     numero1 : 0,
@@ -25,11 +28,12 @@ import { reactive } from 'vue';
 
 <template>
   <div class="container">
-    <header class="p-5 mb-4 mt-4 bg-light rounded-3 text-center w-50 m-auto">
+    <!-- <header class="p-5 mb-4 mt-4 bg-light rounded-3 text-center w-50 m-auto">
       <h1>Calculadora</h1>
-    </header>
+    </header> -->
+    <Cabecalho />
 
-    <form>
+    <!-- <form>
       <div class="row">
         <div class="col-12 d-flex justify-content-center" style="margin-bottom: 16px;">
           <div class="col-md-2" style="margin-right: 16px; width: 156px">
@@ -47,15 +51,19 @@ import { reactive } from 'vue';
             </select>
           </div>
         </div>
-
-        <div class="p-2 bg-success bg-opacity-25 rounded-3 text-center m-auto" style="width: 296px;">
-          <div class="col-md-12">
-            <output name="result" style="font-size: large; font-weight: 700;">{{ 'Resultado: ' + getOperacao() }}</output>
-          </div>
-        </div>
-
       </div>
-    </form>
+    </form> -->
+    <Formulario :numero1="estado.numero1" :numero2="estado.numero2" :operacao="evento => estado.operacao = evento.target.value" :editaNumero1="evento => estado.numero1 = evento.target.value" :editaNumero2="evento => estado.numero2 = evento.target.value" />
+
+    
+    <!-- <div class="p-2 bg-success bg-opacity-25 rounded-3 text-center m-auto" style="width: 296px;">
+      <div class="col-md-12">
+        <output name="result" style="font-size: large; font-weight: 700;">{{ 'Resultado: ' + getOperacao() }}</output>
+      </div>
+    </div> -->
+    <Resultado :getOperacao="getOperacao()"/>
+
+
   </div>
 </template>
 
